@@ -175,100 +175,17 @@ const CATS = [
   { id:'racao',      name:'Ração',              emoji:'🐶', color:'#9FE1CB' },
   { id:'farmacia',   name:'Farmácia',           emoji:'💊', color:'#ED93B1' },
   { id:'padaria',    name:'Padaria',            emoji:'🥐', color:'#FAC775' },
+  { id:'cartao',     name:'Cartão de Crédito',  emoji:'💳', color:'#6366f1' },
   { id:'outros',     name:'Outros',             emoji:'📦', color:'#666666' },
 ];
 
-const SEED = [
-  // ── Ciclo Mai/2025: 21/04 a 20/05 ─────────────────────────────────────
-  // Outros / Lazer
-  {id:'t1',  data:'21/04', desc:'Liberty Duty Free',       cat:'lazer',       parcela:'',       valor:61.69},
-  {id:'t2',  data:'21/04', desc:'La Femme',                cat:'lazer',       parcela:'',       valor:73.00},
-  {id:'t3',  data:'22/04', desc:'Amazon BR',               cat:'lazer',       parcela:'',       valor:142.90},
-  {id:'t4',  data:'22/04', desc:'Amazon BR',               cat:'lazer',       parcela:'',       valor:41.73},
-  {id:'t5',  data:'22/04', desc:'AMAZONMKTPLC* 02/02',     cat:'lazer',       parcela:'02/02',  valor:70.51},
-  {id:'t6',  data:'26/04', desc:'Shopee',                  cat:'lazer',       parcela:'',       valor:135.45},
-  {id:'t7',  data:'27/04', desc:'Dário Rodrigo Lemes',     cat:'lazer',       parcela:'',       valor:40.00},
-  {id:'t8',  data:'28/04', desc:'Beerpoint',               cat:'lazer',       parcela:'',       valor:21.50},
-  {id:'t9',  data:'02/05', desc:'Henrique Guaíra',         cat:'lazer',       parcela:'',       valor:69.00},
-  {id:'t10', data:'15/05', desc:'AMAZONMKTPLC* 01/02',     cat:'lazer',       parcela:'01/02',  valor:87.25},
-  {id:'t11', data:'02/05', desc:'Mercado Livre',           cat:'lazer',       parcela:'04/04',  valor:62.47},
-  {id:'t12', data:'02/05', desc:'Havan',                   cat:'lazer',       parcela:'02/02',  valor:67.50},
-  {id:'t13', data:'02/05', desc:'Lojas Renner',            cat:'lazer',       parcela:'02/02',  valor:164.85},
-  {id:'t14', data:'05/05', desc:'Lanchonete Papalégua',    cat:'lazer',       parcela:'',       valor:102.50},
-  {id:'t15', data:'02/05', desc:'F Soares de Lima Bar',    cat:'lazer',       parcela:'',       valor:63.00},
-  {id:'t16', data:'05/05', desc:'Gobetti e Vilande',       cat:'lazer',       parcela:'',       valor:76.00},
-  {id:'t17', data:'26/04', desc:'MP*PDCMOVEIS',            cat:'lazer',       parcela:'06/07',  valor:79.75},
-  {id:'t18', data:'01/05', desc:'Amazon BR',               cat:'lazer',       parcela:'05/08',  valor:51.66},
-  {id:'t19', data:'05/05', desc:'AMAZONMKTPLC* 01/10',     cat:'lazer', parcela:'01/10',  valor:68.48},
-  {id:'t20', data:'06/05', desc:'Amazon BR',               cat:'lazer', parcela:'',       valor:73.13},
-  {id:'t21', data:'01/05', desc:'PSN',                     cat:'lazer',       parcela:'02/03',  valor:16.00},
-  // Mercado
-  {id:'t22', data:'21/04', desc:'Supermercado Guaíra',     cat:'mercado',       parcela:'',       valor:22.07},
-  {id:'t23', data:'21/04', desc:'Supermercado Guaíra',     cat:'mercado',       parcela:'',       valor:487.45},
-  {id:'t24', data:'22/04', desc:'Supermercado Guaíra',     cat:'mercado',       parcela:'',       valor:31.97},
-  {id:'t25', data:'26/04', desc:'Supermercado Guaíra',     cat:'mercado',       parcela:'',       valor:81.30},
-  {id:'t26', data:'21/04', desc:'Max Guaíra Cascavel',     cat:'mercado',       parcela:'',       valor:41.17},
-  {id:'t27', data:'21/04', desc:'Peixaria Rio Paraná',     cat:'mercado',       parcela:'',       valor:62.70},
-  {id:'t28', data:'06/05', desc:'Supermercado Guaíra',     cat:'mercado', parcela:'',       valor:81.18},
-  {id:'t29', data:'30/04', desc:'Escola Espeguaíra',       cat:'mercado',       parcela:'',       valor:80.00},
-  {id:'t30', data:'01/05', desc:'Max Guaíra',              cat:'mercado',       parcela:'',       valor:856.60},
-  // Aluguel
-  {id:'t31', data:'01/05', desc:'Aluguel',                 cat:'aluguel',       parcela:'',       valor:1400.00},
-  // Encargos / PIX
-  {id:'t32', data:'01/05', desc:'PIX Gabriel Barbosa',     cat:'encargos',       parcela:'',       valor:252.00},
-  {id:'t33', data:'01/05', desc:'IOF Saque PIX',           cat:'encargos',       parcela:'',       valor:1.54},
-  {id:'t34', data:'23/04', desc:'IOF Compra Exterior',     cat:'encargos',       parcela:'',       valor:0.90},
-  {id:'t35', data:'27/04', desc:'IOF Compra Exterior',     cat:'encargos',       parcela:'',       valor:3.61},
-  {id:'t36', data:'27/04', desc:'IOF Compra Exterior',     cat:'encargos',       parcela:'',       valor:2.12},
-  {id:'t37', data:'06/05', desc:'IOF Compra Exterior',     cat:'encargos',       parcela:'',       valor:2.68},
-  {id:'t38', data:'01/05', desc:'Juros Saque PIX',         cat:'encargos',       parcela:'',       valor:11.64},
-  // Seguro / Carro
-  {id:'t39', data:'01/05', desc:'Azul Seguros',            cat:'seguro',       parcela:'04/09',  valor:236.32},
-  {id:'t40', data:'01/05', desc:'Caio Pneus',              cat:'seguro',       parcela:'05/08',  valor:126.66},
-  // Veterinário
-  {id:'t41', data:'21/04', desc:'Amor e Patas',            cat:'vet',       parcela:'',       valor:10.00},
-  {id:'t42', data:'21/04', desc:'Agrovet Guaíra',          cat:'vet',       parcela:'',       valor:18.00},
-  {id:'t43', data:'04/05', desc:'Agrovet Guaíra',          cat:'vet',       parcela:'',       valor:30.00},
-  {id:'t44', data:'02/05', desc:'JIM.COM Amor e Patas',    cat:'vet',       parcela:'01/02',  valor:205.00},
-  // Tecnologia / Sites
-  {id:'t45', data:'21/04', desc:'DL*Google',               cat:'tech',       parcela:'',       valor:4.50},
-  {id:'t46', data:'22/04', desc:'Lovable Lovable.DEV',     cat:'tech',       parcela:'',       valor:25.81},
-  {id:'t47', data:'24/04', desc:'Lovable Lovable.DEV',     cat:'tech',       parcela:'',       valor:103.26},
-  {id:'t48', data:'27/04', desc:'Lovable Lovable.DEV',     cat:'tech',       parcela:'',       valor:77.96},
-  {id:'t49', data:'01/05', desc:'MP*Macamiatelie',         cat:'tech',       parcela:'',       valor:24.90},
-  {id:'t50', data:'22/04', desc:'ProdutosUOL',             cat:'tech',       parcela:'01/03',  valor:16.64},
-  {id:'t51', data:'06/05', desc:'Hostinger.com',           cat:'tech', parcela:'',       valor:0.99},
-  {id:'t52', data:'06/05', desc:'Hostinger.com',           cat:'tech', parcela:'',       valor:0.99},
-  // Combustível
-  {id:'t53', data:'24/04', desc:'Posto Grande Paloma',     cat:'combustivel',       parcela:'',       valor:20.05},
-  {id:'t54', data:'24/04', desc:'Posto Grande Paloma',     cat:'combustivel',       parcela:'',       valor:191.69},
-  // Cartão Nubank
-  {id:'t55', data:'01/05', desc:'Pagamento Cartão Nubank', cat:'nubank',       parcela:'',       valor:300.00},
-  // Streaming
-  {id:'t56', data:'28/04', desc:'EBV*Spotify',             cat:'streaming',       parcela:'',       valor:40.90},
-  {id:'t57', data:'27/04', desc:'Amazon Digital BR',       cat:'streaming',       parcela:'',       valor:2.99},
-  {id:'t58', data:'28/04', desc:'Amazon Digital BR',       cat:'streaming',       parcela:'',       valor:8.91},
-  // Ração
-  {id:'t59', data:'06/05', desc:'Davi Santos Aguia',       cat:'racao', parcela:'',       valor:25.00},
-  // Farmácia
-  {id:'t60', data:'21/04', desc:'Farmácia Nissei',         cat:'farmacia',       parcela:'',       valor:30.23},
-  {id:'t61', data:'02/05', desc:'Farmácia Santa Cruz',     cat:'farmacia',       parcela:'',       valor:9.91},
-  // Padaria
-  {id:'t62', data:'21/04', desc:'Lanchonete Inácio',       cat:'padaria',       parcela:'',       valor:11.52},
-  {id:'t63', data:'05/05', desc:'Lanchonete Inácio',       cat:'padaria',       parcela:'',       valor:25.72},
-];
+const SEED = [];
 
 // ── STATE ─────────────────────────────────────────────────────────────────
 function load() {
   const raw = localStorage.getItem('gastos_txs');
-  if (!raw) { const d = [...SEED]; save(d); return d; }
-  // Migrate: ensure all seed entries present, strip legacy 'tipo' field
-  let stored = JSON.parse(raw);
-  stored = stored.map(({tipo, ...rest}) => rest);
-  const storedIds = new Set(stored.map(t => t.id));
-  SEED.forEach(s => { if (!storedIds.has(s.id)) stored.push(s); });
-  save(stored);
-  return stored;
+  if (!raw) return [];
+  return JSON.parse(raw);
 }
 function save(txs) { localStorage.setItem('gastos_txs', JSON.stringify(txs)); }
 function getSalario() { return parseFloat(localStorage.getItem('gastos_sal') || '0'); }
@@ -279,34 +196,23 @@ function getTotalIncome() { return getSalario() + getExtra(); }
 
 let txs = load();
 let currentPage = 'home';
-let selectedMonth = currentMonthKey();
-
+let selectedMonth = 'init';
 function currentMonthKey() {
   const d = new Date();
-  return `${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const y = d.getFullYear();
+  const key = `${m}/${y}`;
+  const months = ['05/2026','06/2026','07/2026','08/2026','09/2026','10/2026','11/2026','12/2026'];
+  return months.includes(key) ? key : '05/2026';
 }
 
-// Ciclo de fechamento: dia 20 de cada mês.
-// Gasto do dia 21 em diante → fatura do mês SEGUINTE.
-// Gasto do dia 1 ao 20 → fatura do mês ATUAL.
-// Exemplo: 21/04 a 20/05 → fatura Mai/2025.
+// Ciclo mensal simples: dia 01 ao último dia do mês.
 function monthKey(data) {
   const parts = data.split('/');
-  if (parts.length < 2) return '05/2025';
-  const day = parseInt(parts[0]);
+  if (parts.length < 2) return '05/2026';
   const month = parseInt(parts[1]);
-  const thisYear = new Date().getFullYear();
-  const thisMonth = new Date().getMonth() + 1;
-  // Estima o ano (se mês do lançamento muito maior que atual, provavelmente ano anterior)
-  let year = (month > thisMonth + 1) ? thisYear - 1 : thisYear;
-  // Dia 21+ → pertence ao próximo mês de faturamento
-  let billingMonth = month;
-  let billingYear = year;
-  if (day >= 21) {
-    billingMonth = month + 1;
-    if (billingMonth > 12) { billingMonth = 1; billingYear++; }
-  }
-  return `${String(billingMonth).padStart(2,'0')}/${billingYear}`;
+  const year = 2026;
+  return `${String(month).padStart(2,'0')}/${year}`;
 }
 
 function monthLabel(key) {
@@ -316,12 +222,8 @@ function monthLabel(key) {
 }
 
 function getMonths() {
-  const set = new Set(txs.map(t => monthKey(t.data)));
-  return [...set].sort((a,b) => {
-    const [ma,ya] = a.split('/').map(Number);
-    const [mb,yb] = b.split('/').map(Number);
-    return ya !== yb ? ya - yb : ma - mb;
-  });
+  // Fixed tabs: May to December 2026
+  return ['05/2026','06/2026','07/2026','08/2026','09/2026','10/2026','11/2026','12/2026'];
 }
 
 function filteredTxs() {
@@ -362,7 +264,7 @@ function selectMonth(m) { selectedMonth = m; render(); }
 // ── PAGE: HOME ────────────────────────────────────────────────────────────
 function renderHome() {
   const list = filteredTxs();
-  const salario = getTotalIncome() || 9000;
+  const salario = getTotalIncome();
   const totalGasto = list.reduce((s,t) => s+t.valor, 0);
   const sobra = salario - totalGasto;
   const pct = Math.min(totalGasto / salario, 1);
@@ -632,12 +534,7 @@ function render() {
 }
 
 // Init
-selectedMonth = (() => {
-  const months = getMonths();
-  // Default to May 2025 (start of tracking), fall back to last available
-  if (months.includes('05/2025')) return '05/2025';
-  return months[months.length-1] || '05/2025';
-})();
+selectedMonth = currentMonthKey();
 render();
 </script>
 </body>
