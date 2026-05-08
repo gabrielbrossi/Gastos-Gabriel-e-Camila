@@ -271,14 +271,11 @@ function load() {
   return stored;
 }
 function save(txs) { localStorage.setItem('gastos_txs', JSON.stringify(txs)); }
-function getIncome(key) { return parseFloat(localStorage.getItem('gastos_'+key) || '0'); }
-function setIncome(key, v) { localStorage.setItem('gastos_'+key, String(v)); }
-function getTotalIncome() {
-  return getIncome('sal_gabriel') + getIncome('extra_gabriel') +
-         getIncome('sal_camila')  + getIncome('extra_camila');
-}
-function getSalario() { return getTotalIncome() || 9000; }
-function setSalario(v) { setIncome('sal_gabriel', v); }
+function getSalario() { return parseFloat(localStorage.getItem('gastos_sal') || '0'); }
+function setSalario(v) { localStorage.setItem('gastos_sal', String(v)); }
+function getExtra() { return parseFloat(localStorage.getItem('gastos_extra') || '0'); }
+function setExtra(v) { localStorage.setItem('gastos_extra', String(v)); }
+function getTotalIncome() { return getSalario() + getExtra(); }
 
 let txs = load();
 let currentPage = 'home';
@@ -545,42 +542,37 @@ function delTx(id) {
 }
 
 // ── PAGE: CONFIG ──────────────────────────────────────────────────────────
-function incomeField(label, key) {
-  const v = getIncome(key);
-  return `<div class="form-group">
-    <label class="form-label">${label}</label>
-    <div class="sal-input-wrap">
-      <span class="sal-prefix">R$</span>
-      <input class="form-input sal-input" id="inc-${key}" type="number" inputmode="decimal" value="${v || ''}" placeholder="0,00" step="0.01">
-    </div>
-  </div>`;
-}
-
 function renderConfig() {
+  const sal = getSalario();
+  const extra = getExtra();
   const total = getTotalIncome();
   return `
     <div class="page-header">
       <div class="page-title">Configurações</div>
     </div>
 
-    <div class="sec-title">👤 Gabriel</div>
     <div class="card">
-      ${incomeField('Salário Gabriel', 'sal_gabriel')}
-      ${incomeField('Extra (Bolsa, Bônus...)', 'extra_gabriel')}
-    </div>
-
-    <div class="sec-title">👤 Camila</div>
-    <div class="card">
-      ${incomeField('Salário Camila', 'sal_camila')}
-      ${incomeField('Extra (Vendas, Bônus...)', 'extra_camila')}
-    </div>
-
-    <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-      <div>
-        <div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Renda total</div>
-        <div style="font-size:22px;font-weight:600;font-family:'DM Mono',monospace;color:var(--green)">${brl(total)}</div>
+      <div class="form-group">
+        <label class="form-label">Salário</label>
+        <div class="sal-input-wrap">
+          <span class="sal-prefix">R$</span>
+          <input class="form-input sal-input" id="inc-sal" type="number" inputmode="decimal" value="${sal||''}" placeholder="0,00" step="0.01">
+        </div>
       </div>
-      <button class="btn-add" style="width:auto;padding:12px 24px;margin:0" onclick="saveAllIncome()">Salvar</button>
+      <div class="form-group">
+        <label class="form-label">Extra (Vendas, Bolsa, Bônus...)</label>
+        <div class="sal-input-wrap">
+          <span class="sal-prefix">R$</span>
+          <input class="form-input sal-input" id="inc-extra" type="number" inputmode="decimal" value="${extra||''}" placeholder="0,00" step="0.01">
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+        <div>
+          <div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Renda total</div>
+          <div style="font-size:20px;font-weight:600;font-family:'DM Mono',monospace;color:var(--green)">${brl(total)}</div>
+        </div>
+        <button class="btn-add" style="width:auto;padding:12px 24px;margin:0" onclick="saveAllIncome()">Salvar</button>
+      </div>
     </div>
 
     <div class="sec-title">Dados</div>
@@ -601,10 +593,10 @@ function renderConfig() {
 }
 
 function saveAllIncome() {
-  ['sal_gabriel','extra_gabriel','sal_camila','extra_camila'].forEach(k => {
-    const el = document.getElementById('inc-'+k);
-    if (el) setIncome(k, parseFloat(el.value) || 0);
-  });
+  const sal = parseFloat(document.getElementById('inc-sal').value) || 0;
+  const extra = parseFloat(document.getElementById('inc-extra').value) || 0;
+  setSalario(sal);
+  setExtra(extra);
   showToast('✓ Renda salva!');
   render();
 }
